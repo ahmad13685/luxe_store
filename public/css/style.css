@@ -4688,7 +4688,7 @@ input:focus-visible {
         padding: 0;
         border: 0;
         background: transparent;
-        color: #26351f;
+       color: var(--color-text);
         font-size: 20px;
         text-decoration: none;
         visibility: visible !important;
