@@ -45,12 +45,21 @@
             {{-- Mobile/tablet inline search. Desktop header remains unchanged. --}}
             <form class="mobile-navbar-search" role="search" action="{{ url('/shop') }}" method="GET">
                 <i class="bi bi-search mobile-navbar-search-icon"></i>
-                <input type="text" name="q" placeholder="Search products..." autocomplete="off" aria-label="Search products">
+                <input type="text" name="q" placeholder="Search products..." autocomplete="off"
+                    aria-label="Search products">
                 <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
             </form>
+            {{-- Mobile/tablet cart --}}
+            <a href="{{ url('/cart') }}" class="navbar-icon-btn mobile-cart-btn position-relative"
+                data-bs-toggle="offcanvas" data-bs-target="#miniCartOffcanvas" aria-label="Open cart">
 
+                <i class="bi bi-cart3"></i>
+
+                <span class="cart-count">0</span>
+            </a>
             {{-- Mobile/tablet theme toggle --}}
-            <button class="theme-toggle-btn mobile-theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">
+            <button class="theme-toggle-btn mobile-theme-toggle" type="button" title="Toggle dark mode"
+                aria-label="Toggle dark mode">
                 <i class="bi bi-moon-stars"></i>
             </button>
 
@@ -157,6 +166,7 @@
                 <button class="theme-toggle-btn" title="Toggle dark mode">
                     <i class="bi bi-moon-stars"></i>
                 </button>
+
             </div>
         </div>
     </nav>
@@ -175,18 +185,21 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
                 @if (session('customer_id'))
-                    <li class="nav-item"><a class="nav-link" href="{{ route('customer.dashboard') }}">My Dashboard</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('customer.dashboard') }}">My
+                            Dashboard</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('customer.orders') }}">My Orders</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('customer.wishlist') }}">Wishlist</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('customer.profile.edit') }}">My Profile</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('customer.profile.edit') }}">My
+                            Profile</a>
                     </li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('customer.logout') }}">
                             @csrf
-                            <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">Logout</button>
+                            <button type="submit"
+                                class="nav-link border-0 bg-transparent w-100 text-start">Logout</button>
                         </form>
                     </li>
                 @else
