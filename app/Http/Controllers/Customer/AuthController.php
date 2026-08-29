@@ -58,7 +58,7 @@ class AuthController extends Controller
         // send them back to it instead of always landing on the dashboard.
         // Otherwise (a normal, direct login) the customer should land on
         // their dashboard - not the public homepage.
-        $intended = $request->session()->pull('url.intended', route('customer.dashboard'));
+        $intended = $request->session()->pull('url.intended', route('home'));
 
         return redirect($intended)->with('success', 'Welcome back, ' . $customer->name . '!');
     }
