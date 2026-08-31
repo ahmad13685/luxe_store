@@ -14,6 +14,7 @@ class Order extends Model
     'order_number',
     'status',
     'payment_method',
+    'payment_status',
     'card_last4',
     'cheque_number',
     'subtotal',
@@ -22,6 +23,9 @@ class Order extends Model
     'shipping_address',      // ← YEH LINE ADD KAREIN
     'shipping_address_id',
     'billing_address_id',
+    'dispatched_by',
+    'dispatched_at',
+    'delivered_at',
 ];
 
     // ---------------------------------------------------------------
@@ -135,6 +139,36 @@ class Order extends Model
     public function billingAddress()
     {
         return $this->belongsTo(Address::class, 'billing_address_id');
+    }
+
+    /**
+     * The admin/employee who dispatched this order.
+     */
+    public function dispatcher()
+    {
+        return $this->belongsTo(User::class, 'dispatched_by');
+    }
+
+    /**
+     * Business rule: block dispatch until payment has cleared
+     * (Cash on Delivery orders skip this check).
+     */
+    public function canBeDispatched(): bool
+    {
+        return $this->payment_method === 'Cash on Delivery'
+            || $this->payment_status === 'cleared';
+    }
+
+    /**
+     * Business rule: customer can only cancel before it's packed.
+     */
+    public function canBeCancelled(): bool
+    {
+        return in_array($this->status, [
+            self::STATUS_PENDING,
+            self::STATUS_PAYMENT_VERIFIED,
+            self::STATUS_PROCESSING,
+        ]);
     }
 
 }

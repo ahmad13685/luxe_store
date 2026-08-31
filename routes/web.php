@@ -8,6 +8,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\Customer\WishlistController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\ProductController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -118,9 +120,11 @@ Route::prefix('customer')->name('customer.')->group(function () {
         Route::put('/profile', [ProfileController::class, 'update'])
             ->name('profile.update');
 
+
         // Future:
         // Wishlist
         // Profile
         // Change Password
     });
+
 });
