@@ -160,7 +160,7 @@
                             <div class="product-card">
                                 <div class="product-img-wrap">
                                     <span class="product-badge">New</span>
-                                    <span class="stock-badge">In Stock</span>
+                                    <span class="stock-badge">Out of Stock</span>
                                     <img src="{{ asset('pic/p1.webp') }}" alt="Oversized Linen Shirt">
                                     @if (session('customer_id'))
                                         <form method="POST" action="{{ route('customer.wishlist.store') }}"
